@@ -21,7 +21,7 @@ jobs:
     # Calculates traffic and clones and stores in CSV file
     - name: Repository Traffic 
       id: traffic
-      uses: louisblankemeier/repository-traffic-action@main
+      uses: louisblankemeier/repository-traffic-action@dev
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
         REPOSITORY_NAME: "StanfordMIMI/Comp2Comp"
