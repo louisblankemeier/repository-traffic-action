@@ -4,7 +4,6 @@ on:
   schedule: 
     - cron: "55 23 * * 0"
 
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "traffic"
@@ -17,21 +16,27 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       with:
-        ref: "insights"
+        ref: "dev"
+    
+    # comments added for checkout
     
     # Calculates traffic and clones and stores in CSV file
     - name: Repository Traffic 
       id: traffic
-      uses: sangonzal/repository-traffic-action@v0.1.4
+      uses: louisblankemeier/repository-traffic-action@dev
       env:
         TRAFFIC_ACTION_TOKEN: ${{ secrets.TRAFFIC_ACTION_TOKEN }} 
+        REPOSITORY_NAME: "StanfordMIMI/Comp2Comp"
      
     # Commits files to repository
     - name: Commit changes
-      uses: EndBug/add-and-commit@v4
+      uses: EndBug/add-and-commit@v9
       with:
-        author_name: Santiago Gonzalez
+        author_name: Louis Blankemeier
+        author_email: louis.blankemeier@stanford.edu
+        committer_name: Louis Blankemeier
+        committer_email: louis.blankemeier@stanford.edu
         message: "GitHub traffic" 
         add: "./traffic/*"
-        ref: "insights"
+        ref: "dev"
         
